@@ -1,4 +1,4 @@
-import { MenuItems } from '../../menu-button/menu-types/MenuItems';
+import { MenuItem } from '../../menu-button/menu-types/MenuItem';
 
 type TableHeader = {
   title: string;
@@ -10,7 +10,7 @@ type TableHeaderActions = {
   action: (...[arg]: string[]) => void;
   showCondition: () => boolean;
   isMenu?: boolean;
-  menuItems?: MenuItems[];
+  menuItems?: MenuItem[];
 };
 
 export type { TableHeader };

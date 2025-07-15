@@ -10,7 +10,6 @@ import { MenuButtonComponent } from '../menu-button/menu-button.component';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSortModule } from '@angular/material/sort';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-generic-table',
@@ -26,10 +25,10 @@ import { DomSanitizer } from '@angular/platform-browser';
     MatSortModule,
   ],
   templateUrl: './generic-table.component.html',
-  styleUrl: './generic-table.component.css',
+  styleUrl: './generic-table.component.scss',
 })
 export class GenericTableComponent<T> {
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor() {}
 
   /**
    * La proprietà `data` contiene i dati da visualizzare nella tabella.

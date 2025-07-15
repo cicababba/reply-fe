@@ -9,7 +9,7 @@ import { MenuItem } from './menu-types/MenuItem';
   selector: 'app-menu-button',
   imports: [MatMenuModule, MatButton, CommonModule],
   templateUrl: './menu-button.component.html',
-  styleUrl: './menu-button.component.css',
+  styleUrl: './menu-button.component.scss',
 })
 export class MenuButtonComponent {
   @Input() label: string = '';
