@@ -1,41 +1,39 @@
-<mat-card class="min-w p-10">
-  <!-- Header della tabella -->
-  <div *ngIf="header" class="table-header">
-    <h3>{{ header.title }}</h3>
-    <div class="button-header">
-      <ng-container *ngFor="let button of header.buttons">
-        <ng-container *ngIf="button.isMenu && button.showCondition()">
-          <app-menu-button
-            [label]="button.label"
-            [menuItems]="button.menuItems"
-          ></app-menu-button>
-        </ng-container>
-        <ng-container *ngIf="!button.isMenu">
-          <button
-            *ngIf="button.showCondition()"
-            mat-flat-button
-            color="primary"
-            (click)="button.action()"
-          >
-            {{ button.label }}
-          </button>
-        </ng-container>
+<!-- Header della tabella -->
+<div *ngIf="header" class="table-header">
+  <h3>{{ header.title }}</h3>
+  <div>
+    <ng-container *ngFor="let button of header.buttons">
+      <ng-container *ngIf="button.isMenu && button.showCondition()">
+        <app-menu-button
+          [label]="button.label"
+          [menuItems]="button.menuItems"
+        ></app-menu-button>
       </ng-container>
-    </div>
-  </div>
-  <table mat-table [dataSource]="data" class="mat-elevation-z8" matSort>
-    <ng-container
-      *ngFor="let entry of displayedColumns | keyvalue"
-      [matColumnDef]="entry.key"
-    >
-      <th mat-header-cell *matHeaderCellDef>{{ entry.value }}</th>
-      <td mat-cell *matCellDef="let element">{{ element[entry.key] }}</td>
+      <ng-container *ngIf="!button.isMenu">
+        <button
+          *ngIf="button.showCondition()"
+          mat-flat-button
+          color="primary"
+          (click)="button.action()"
+        >
+          {{ button.label }}
+        </button>
+      </ng-container>
     </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="allColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: allColumns"></tr>
-  </table>
-  <div *ngIf="!data || data.length === 0" class="p-10 text-center">
-    Non ci sono elementi da visualizzare
   </div>
-</mat-card>
+</div>
+<table mat-table [dataSource]="data" class="mat-elevation-z8" matSort>
+  <ng-container
+    *ngFor="let entry of displayedColumns | keyvalue"
+    [matColumnDef]="entry.key"
+  >
+    <th mat-header-cell *matHeaderCellDef>{{ entry.value }}</th>
+    <td mat-cell *matCellDef="let element">{{ element[entry.key] }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="allColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: allColumns"></tr>
+</table>
+<div *ngIf="!data || data.length === 0" class="p-10 text-center">
+  Non ci sono elementi da visualizzare
+</div>

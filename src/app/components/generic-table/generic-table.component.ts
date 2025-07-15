@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { TableAction } from './table-types/TableAction';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
 import { TableHeader } from './table-types/TableHeader';
 import { MenuButtonComponent } from '../menu-button/menu-button.component';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +17,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FormsModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule,
     MenuButtonComponent,
     MatTooltipModule,
   ],

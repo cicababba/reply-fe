@@ -1,6 +1,12 @@
-<app-generic-table
-  [data]="data"
-  [displayedColumns]="displayedColumns"
-  [header]="tableHeader"
->
-</app-generic-table>
+<mat-card class="min-w p-10">
+  <app-new-request class="mb-1"></app-new-request>
+
+  <mat-divider></mat-divider>
+  <app-generic-table
+    class="mt-1"
+    [data]="data"
+    [displayedColumns]="displayedColumns"
+    [header]="tableHeader"
+  >
+  </app-generic-table>
+</mat-card>

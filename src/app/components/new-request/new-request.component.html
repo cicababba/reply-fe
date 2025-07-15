@@ -1,0 +1,16 @@
+<h3>Inserisci una nuova richiesta</h3>
+<form [formGroup]="newRequestForm" (ngSubmit)="submit()">
+  <div class="flex-column">
+    <mat-form-field>
+      <mat-label>Titolo</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descrizione</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
+  <button mat-button type="submit" [disabled]="!newRequestForm.valid">
+    Salva
+  </button>
+</form>
