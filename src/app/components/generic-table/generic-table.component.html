@@ -1,4 +1,4 @@
-<mat-card class="main-card center-wrapper">
+<mat-card class="min-w p-10">
   <!-- Header della tabella -->
   <div *ngIf="header" class="table-header">
     <h3>{{ header.title }}</h3>
@@ -23,41 +23,19 @@
       </ng-container>
     </div>
   </div>
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="data" class="table fixed-layout" matSort>
-      <ng-container
-        *ngFor="let entry of displayedColumns | keyvalue"
-        [matColumnDef]="entry.key"
-      >
-        <mat-header-cell *matHeaderCellDef>
-          {{ entry.value }}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          {{ row[entry.key] }}
-        </mat-cell>
-      </ng-container>
+  <table mat-table [dataSource]="data" class="mat-elevation-z8" matSort>
+    <ng-container
+      *ngFor="let entry of displayedColumns | keyvalue"
+      [matColumnDef]="entry.key"
+    >
+      <th mat-header-cell *matHeaderCellDef>{{ entry.value }}</th>
+      <td mat-cell *matCellDef="let element">{{ element[entry.key] }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="actions" *ngIf="actions?.length">
-        <mat-header-cell *matHeaderCellDef>Azioni</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <ng-container *ngFor="let action of actions">
-            <button
-              mat-mini-fab
-              *ngIf="action.showCondition(element)"
-              (click)="action.action(element)"
-              matTooltip="{{ action.label }}"
-            >
-              <mat-icon *ngIf="action.icon">{{ action.icon }}</mat-icon>
-            </button>
-          </ng-container>
-        </mat-cell>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="allColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: allColumns"></tr>
-    </table>
-  </div>
-  <div *ngIf="!data || data.length === 0" class="mt-2 text-center">
+    <tr mat-header-row *matHeaderRowDef="allColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: allColumns"></tr>
+  </table>
+  <div *ngIf="!data || data.length === 0" class="p-10 text-center">
     Non ci sono elementi da visualizzare
   </div>
 </mat-card>

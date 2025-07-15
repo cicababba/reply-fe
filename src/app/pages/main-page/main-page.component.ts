@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GenericTableComponent } from '../../components/generic-table/generic-table.component';
+import { TableHeader } from '../../components/generic-table/table-types/TableHeader';
 
 @Component({
   selector: 'app-main-page',
@@ -35,6 +36,10 @@ export class MainPageComponent {
       creationDate: new Date(),
     },
   ];
+
+  tableHeader: TableHeader = {
+    title: 'Elenco richieste',
+  };
 
   displayedColumns: Map<string, string> = new Map([
     ['title', 'Titolo'],

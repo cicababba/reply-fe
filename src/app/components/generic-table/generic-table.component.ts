@@ -9,7 +9,6 @@ import { TableHeader } from './table-types/TableHeader';
 import { MenuButtonComponent } from '../menu-button/menu-button.component';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-generic-table',
@@ -22,7 +21,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatCardModule,
     MenuButtonComponent,
     MatTooltipModule,
-    MatSortModule,
   ],
   templateUrl: './generic-table.component.html',
   styleUrl: './generic-table.component.scss',
