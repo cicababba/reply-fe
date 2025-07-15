@@ -1,0 +1,80 @@
+<mat-card class="main-card center-wrapper">
+  <!-- Header della tabella -->
+  <div *ngIf="header" class="table-header">
+    <h3>{{ header.title }}</h3>
+    <div class="button-header">
+      <ng-container *ngFor="let button of header.buttons">
+        <ng-container *ngIf="button.isMenu && button.showCondition()">
+          <app-menu-button
+            [label]="button.label"
+            [menuItems]="button.menuItems"
+          ></app-menu-button>
+        </ng-container>
+        <ng-container *ngIf="!button.isMenu">
+          <button
+            *ngIf="button.showCondition()"
+            mat-flat-button
+            color="primary"
+            (click)="button.action()"
+          >
+            {{ button.label }}
+          </button>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+  <div class="mat-elevation-z8">
+    <table
+      *ngIf="displayedColumns"
+      mat-table
+      [dataSource]="data"
+      class="table fixed-layout"
+      matSort="enableSorting ? sort : null"
+    >
+      <!-- Definizione delle colonne in maniera dinamica -->
+      <ng-container>
+        <ng-container
+          *ngFor="let entry of displayedColumns | keyvalue"
+          [matColumnDef]="entry.key"
+        >
+          <ng-template>
+            <th mat-header-cell *matHeaderCellDef></th>
+          </ng-template>
+          <td mat-cell *matCellDef="let element">
+            <ng-template> </ng-template>
+          </td>
+        </ng-container>
+
+        <!-- Colonna statica per le azioni, gestisce un'array di azioni -->
+        <ng-container
+          *ngIf="actions && actions.length > 0"
+          matColumnDef="actions"
+        >
+          <th mat-header-cell *matHeaderCellDef>Azioni</th>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngFor="let action of actions">
+              <button
+                class="flat m-10"
+                mat-mini-fab
+                *ngIf="action.showCondition(element)"
+                (click)="action.action(element)"
+                matTooltip="{{ action.label }}"
+              >
+                <mat-icon *ngIf="action.icon">{{ action.icon }}</mat-icon>
+              </button>
+            </ng-container>
+          </td>
+        </ng-container>
+
+        <!-- Riga per gli header -->
+        <tr mat-header-row *matHeaderRowDef="allColumns"></tr>
+
+        <!-- Riga dei dati -->
+        <tr mat-row *matRowDef="let row; columns: allColumns"></tr>
+      </ng-container>
+    </table>
+  </div>
+  <div *ngIf="!data || data.length === 0" class="mt-2 text-center">
+    Non ci sono elementi da visualizzare
+  </div>
+</mat-card>
