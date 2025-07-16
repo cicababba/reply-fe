@@ -51,6 +51,7 @@ export class MainPageComponent implements OnInit {
   }
 
   async newRequest(req: IRequest) {
-    return await firstValueFrom(this.requestService.addRequest(req));
+    await firstValueFrom(this.requestService.addRequest(req));
+    await this.getRequests();
   }
 }
