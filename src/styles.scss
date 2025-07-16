@@ -43,3 +43,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .max-w {
     max-width: 50%;
 }
+
+.center-wrapper {
+  max-width: 900px;
+  margin: 10rem auto 0 auto;
+  padding: 16px;
+}
