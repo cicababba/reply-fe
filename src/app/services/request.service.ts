@@ -12,10 +12,14 @@ export class RequestService {
   constructor(private http: HttpClient) {}
 
   getRequests(): Observable<IRequest[]> {
-    return this.http.get<IRequest[]>(`${this.baseUrl}request`);
+    return this.http.get<IRequest[]>(`${this.baseUrl}request`, {
+      withCredentials: true,
+    });
   }
 
   addRequest(request: IRequest): Observable<string> {
-    return this.http.post<string>(`${this.baseUrl}request`, request);
+    return this.http.post<string>(`${this.baseUrl}request`, request, {
+      withCredentials: true,
+    });
   }
 }
