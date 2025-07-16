@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { IRequest } from '../../types/Request';
 
 @Component({
   selector: 'app-new-request',
@@ -15,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './new-request.component.scss',
 })
 export class NewRequestComponent {
+  @Output() onSubmit = new EventEmitter<IRequest>();
+
   newRequestForm: FormGroup;
   constructor(private fb: FormBuilder) {
     this.newRequestForm = this.fb.group({
@@ -23,5 +26,8 @@ export class NewRequestComponent {
     });
   }
 
-  submit() {}
+  submit() {
+    this.onSubmit.emit(this.newRequestForm.value);
+    this.newRequestForm.reset();
+  }
 }

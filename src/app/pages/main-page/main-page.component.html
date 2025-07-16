@@ -1,5 +1,8 @@
 <mat-card class="min-w p-10">
-  <app-new-request class="mb-1"></app-new-request>
+  <app-new-request
+    (onSubmit)="newRequest($event)"
+    class="mb-1"
+  ></app-new-request>
 
   <mat-divider></mat-divider>
   <app-generic-table

@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GenericTableComponent } from '../../components/generic-table/generic-table.component';
 import { TableHeader } from '../../components/generic-table/table-types/TableHeader';
 import { NewRequestComponent } from '../../components/new-request/new-request.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { RequestService } from '../../services/request.service';
+import { firstValueFrom } from 'rxjs';
+import { IRequest } from '../../types/Request';
 
 @Component({
   selector: 'app-main-page',
@@ -17,41 +20,15 @@ import { MatDividerModule } from '@angular/material/divider';
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
 })
-export class MainPageComponent {
-  data: { title: string; description: string; creationDate: Date }[] = [
-    {
-      title: 'banana',
-      description: 'banana description',
-      creationDate: new Date(),
-    },
-    {
-      title: 'banana',
-      description: 'banana description',
-      creationDate: new Date(),
-    },
-    {
-      title: 'banana',
-      description: 'banana description',
-      creationDate: new Date(),
-    },
-    {
-      title: 'banana',
-      description: 'banana description',
-      creationDate: new Date(),
-    },
-    {
-      title: 'banana',
-      description: 'banana description',
-      creationDate: new Date(),
-    },
-  ];
+export class MainPageComponent implements OnInit {
+  data: IRequest[] = [];
 
   tableHeader: TableHeader = {
     title: 'Elenco richieste',
     buttons: [
       {
         label: 'Ricarica richieste',
-        action: () => console.log('banana'),
+        action: () => this.getRequests(),
         showCondition: () => true,
       },
     ],
@@ -62,4 +39,18 @@ export class MainPageComponent {
     ['description', 'Descrizione'],
     ['creationDate', 'Data di creazione'],
   ]);
+
+  constructor(private requestService: RequestService) {}
+
+  async ngOnInit(): Promise<void> {
+    this.getRequests();
+  }
+
+  async getRequests() {
+    this.data = await firstValueFrom(this.requestService.getRequests());
+  }
+
+  async newRequest(req: IRequest) {
+    return await firstValueFrom(this.requestService.addRequest(req));
+  }
 }
