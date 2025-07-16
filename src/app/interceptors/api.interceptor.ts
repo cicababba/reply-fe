@@ -36,17 +36,15 @@ export class ApiInterceptor implements HttpInterceptor {
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        const method = req.method;
-        if (method === 'POST')
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            duration: 5000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom',
-            data: {
-              message: 'Errore durante il salvataggio della richiesta',
-              type: 'error',
-            },
-          });
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          data: {
+            message: 'Errore durante il salvataggio della richiesta',
+            type: 'error',
+          },
+        });
 
         return throwError(() => error);
       })
