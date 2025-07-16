@@ -1,0 +1,13 @@
+.success {
+  background-color: #8df291 !important; /* verde */
+  color: black !important;
+}
+
+.error {
+  background-color: #f16f6f !important; /* rosso */
+  color: black !important;
+}
+
+:host {
+  display: flex;
+}
